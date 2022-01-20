@@ -7,6 +7,7 @@ import io.winters.mall.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import io.winters.mall.domain.UserDO;
+import io.winters.mall.domain.UserDORepo;
 
 import java.util.Date;
 
