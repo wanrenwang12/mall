@@ -1,8 +1,5 @@
 package io.winters.mall.service;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public interface UserService {
     /**
      *
@@ -15,10 +12,10 @@ public interface UserService {
     /**
      *
      * @param loginName
-     * @param passwordMD5
+     * @param password
      * @return
      */
-    String login(String loginName, String passwordMD5);
+    String login(String loginName, String password);
 
 
 }

@@ -11,10 +11,7 @@ import io.winters.mall.web.vo.ResultGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,6 +21,8 @@ import javax.validation.Valid;
 public class UserAPI {
 
     private PhoneUtil phoneUtil;
+    private ResultGenerator generator;
+    private UserService userService;
 
     @Autowired
     public UserAPI(PhoneUtil phoneUtil, ResultGenerator generator, UserService userService) {
@@ -32,8 +31,10 @@ public class UserAPI {
         this.userService = userService;
     }
 
-    private ResultGenerator generator;
-    private UserService userService;
+    @PostMapping("/test")
+    public String test(@RequestBody @Valid UserRegisterDTO userRegisterDTO){
+        return "success";
+    }
 
     @PostMapping("/user/register")
     public Result register(@RequestBody @Valid UserRegisterDTO userRegisterDTO){
@@ -50,6 +51,8 @@ public class UserAPI {
 
         return generator.genFailResult(registerResult);
     }
+
+
 
     @PostMapping("/user/login")
     public Result login(@RequestBody @Valid UserLoginDTO userLoginDTO){
@@ -69,4 +72,5 @@ public class UserAPI {
         //登录失败
         return generator.genFailResult(loginResult);
     }
+
 }

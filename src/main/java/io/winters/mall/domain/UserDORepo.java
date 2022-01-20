@@ -2,9 +2,8 @@ package io.winters.mall.domain;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Component;
 
-public interface UserDORepo extends CrudRepository<UserDO, Long> {
+public interface UserDORepo extends CrudRepository<UserDO, Long>{
 
     UserDO findUserDOByLoginName(String loginName);
 

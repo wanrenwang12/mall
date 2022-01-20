@@ -15,8 +15,9 @@ import java.util.Date;
 public class UserServiceImpl implements UserService {
 
 
-    private UserDORepo userDORepo;
 
+
+    private UserDORepo userDORepo;
     private UserTokenDORepo userTokenDORepo;
 
     @Autowired
@@ -24,7 +25,6 @@ public class UserServiceImpl implements UserService {
         this.userDORepo = userDORepo;
         this.userTokenDORepo = userTokenDORepo;
     }
-
 
     @Override
     public String register(String loginName, String password) {
@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService {
 
         return "DB_ERROR";
     }
+
+
 
     @Override
     public String login(String loginName, String passwordMD5){
