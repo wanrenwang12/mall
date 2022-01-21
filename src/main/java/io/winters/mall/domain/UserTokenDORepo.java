@@ -4,19 +4,25 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserTokenDORepo extends CrudRepository<UserTokenDO, Long> {
 
-    int deleteByPrimaryKey(Long userId);
+    //int deleteUserTokenDOByUserId(long userId);
+    //int deleteUserTokenDOByUserId(Long userId);
 
-    int insert(UserTokenDO record);
 
-    int insertSelective(UserTokenDO record);
 
-    UserTokenDO selectByPrimaryKey(Long userId);
-    UserTokenDO findByUserId(Long userID);
+    UserTokenDO save(UserTokenDO userTokenDo);
+    //int insert(UserTokenDO record);
 
-    UserTokenDO selectByToken(String token);
+    //int insertSelective(UserTokenDO record);
 
-    int updateByPrimaryKeySelective(UserTokenDO record);
+    UserTokenDO findUserTokenDOByUserId(Long userId);
 
-    int updateByPrimaryKey(UserTokenDO record);
+    UserTokenDO findUserTokenDOByToken(String token);
+
+    int deleteUserTokenDOByUserId(Long userId);
+    //UserTokenDO selectByToken(String token);
+
+    //int updateByPrimaryKeySelective(UserTokenDO record);
+
+    //int updateByPrimaryKey(UserTokenDO record);
 
 }
