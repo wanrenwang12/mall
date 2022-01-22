@@ -1,6 +1,7 @@
 package io.winters.mall.domain;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UserTokenDORepo extends CrudRepository<UserTokenDO, Long> {
 
@@ -15,10 +16,12 @@ public interface UserTokenDORepo extends CrudRepository<UserTokenDO, Long> {
     //int insertSelective(UserTokenDO record);
 
     UserTokenDO findUserTokenDOByUserId(Long userId);
-
     UserTokenDO findUserTokenDOByToken(String token);
 
+
+    @Transactional
     int deleteUserTokenDOByUserId(Long userId);
+
     //UserTokenDO selectByToken(String token);
 
     //int updateByPrimaryKeySelective(UserTokenDO record);

@@ -12,7 +12,7 @@ import java.util.Date;
 public class UserTokenDO {
 
     @Id
-    @GeneratedValue
+    //有问题
     private Long userId;
 
     private String token;

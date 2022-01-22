@@ -6,10 +6,12 @@ import io.winters.mall.util.NumberUtil;
 import io.winters.mall.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 import java.util.Date;
 
+@Service
 @Component
 public class UserServiceImpl implements UserService {
 
@@ -77,6 +79,9 @@ public class UserServiceImpl implements UserService {
                     return token;
                 }
             } else {
+                userTokenDORepo.deleteUserTokenDOByUserId(user.getUserId());
+                UserToken = new UserTokenDO();
+                UserToken.setUserId(user.getUserId());
                 UserToken.setToken(token);
                 UserToken.setUpdateTime(now);
                 UserToken.setExpireTime(expireTime);
@@ -110,6 +115,7 @@ public class UserServiceImpl implements UserService {
     private String getNewToken(String timeStr, Long userId) {
         String src = timeStr + userId + NumberUtil.genRandomNum(4);
         return TokenUtil.genToken(src);
+
     }
 
 }

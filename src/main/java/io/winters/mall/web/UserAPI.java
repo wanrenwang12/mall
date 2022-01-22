@@ -2,12 +2,16 @@ package io.winters.mall.web;
 
 
 import io.winters.mall.common.Constants;
+import io.winters.mall.config.annotation.TokenToUser;
+import io.winters.mall.domain.UserDO;
 import io.winters.mall.service.UserService;
+import io.winters.mall.util.BeanUtil;
 import io.winters.mall.util.PhoneUtil;
 import io.winters.mall.web.dto.UserLoginDTO;
 import io.winters.mall.web.dto.UserRegisterDTO;
 import io.winters.mall.web.vo.Result;
 import io.winters.mall.web.vo.ResultGenerator;
+import io.winters.mall.web.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +33,6 @@ public class UserAPI {
         this.phoneUtil = phoneUtil;
         this.generator = generator;
         this.userService = userService;
-    }
-
-    @PostMapping("/test")
-    public String test(@RequestBody @Valid UserRegisterDTO userRegisterDTO){
-        return "success";
     }
 
     @PostMapping("/user/register")
@@ -73,6 +72,27 @@ public class UserAPI {
         return generator.genFailResult(loginResult);
     }
 
+    //这个功能有问题
+    @PostMapping("/user/logout")
+    public Result<String> logout(@TokenToUser UserDO loginUser) {
+        Boolean logoutResult = userService.logout(loginUser.getUserId());
 
+        log.info("logout api,loginUser={}", loginUser.getUserId());
+
+        //登出成功
+        if (logoutResult) {
+            return generator.genSuccessResult();
+        }
+        //登出失败
+        return generator.genFailResult("logout error");
+    }
+
+    @GetMapping("/user/info")
+    public Result<UserVO> getUserDetail(@TokenToUser UserDO loginUser) {
+        //已登录则直接返回
+        UserVO UserVO = new UserVO();
+        BeanUtil.copyProperties(loginUser, UserVO);
+        return generator.genSuccessResult(UserVO);
+    }
 
 }
