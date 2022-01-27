@@ -18,9 +18,8 @@ public interface UserTokenDORepo extends CrudRepository<UserTokenDO, Long> {
     UserTokenDO findUserTokenDOByUserId(Long userId);
     UserTokenDO findUserTokenDOByToken(String token);
 
+    void deleteUserTokenDOByUserId(Long userId);
 
-    @Transactional
-    int deleteUserTokenDOByUserId(Long userId);
 
     //UserTokenDO selectByToken(String token);
 

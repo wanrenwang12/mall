@@ -14,6 +14,8 @@ public interface UserDORepo extends CrudRepository<UserDO, Long>{
 
     UserDO findUserDOByLoginNameAndPassword(String loginName, String password);
 
+    UserDO findUserDOByUserId(Long userId);
+
 
     //UserDO findUserDOByLoginNameAndPassword(@Param("loginName") String loginName, @Param("password") String password);
 
